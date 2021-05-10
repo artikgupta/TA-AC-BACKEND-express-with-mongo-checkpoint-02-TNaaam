@@ -5,6 +5,9 @@ var Event = require("../models/event")
 
 var Remark = require("../models/remark")
 
+
+var moment = require('moment');
+
 /* GET users listing. */
 
 router.get('/create',(req,res)=>{
@@ -23,11 +26,26 @@ router.post('/', (req, res, next) => {
   router.get("/",(req,res,next)=>{ 
     Event.find((err, events)=>{
       if(err) return next(err)
-      res.render("allEvents",{events})
-  
+    Event.distinct("category",( err,categories)=>{
+      console.log(categories, "categories")
+      if(err) return next(err)
+      Event.find().sort({start_date:-1})
+      res.render("allEvents",{events,categories,  moment: moment})
+    })
     })
   })
 
+
+  // displaying events according to categories
+
+  router.get("/:category/single",(req,res,next)=>{
+    let type = req.params.category
+    Event.find({ category: type }).exec((err, events) => {
+      if (err) next(err);
+      console.log(events)
+      res.render('categorywiseEvent', {  events : events});
+    });
+  })
 
 
   router.get("/:id",(req,res,next)=>{
@@ -41,7 +59,6 @@ router.post('/', (req, res, next) => {
     // })
 
     Event.findById({_id:id}).populate('remarks').exec((err,event)=> {
-      
       console.log(event)
       res.render('singleEvent', { event});
     })
@@ -103,8 +120,6 @@ router.get('/:id/delete', (req, res, next) => {
 
 //   Add Remark
 
-
-
 router.post('/:id/remarks', (req, res, next) => {
     let eventId = req.params.id;
     req.body.events = eventId;
@@ -123,12 +138,30 @@ router.post('/:id/remarks', (req, res, next) => {
 
   });
   
+// Find data according to location
 
+router.post('/search/city', (req, res, next) => {
+  let city = req.body.search;
+  Event.find({ location: { $regex: new RegExp(city, 'i') } }).exec(
+    (err, events) => {
+      if (err) next(err);
+      res.render('allEvents', { events: events , categories:[], moment});
+    }
+  );
+})
+
+
+router.get('/location', (req, res, next) => {
+  Event.find({})
+    .sort({ location: 1 })
+    .exec((err, events) => {
+      if (err) next(err);
+      res.render('allEvents', { events: events , categories:[], moment});
+    });
+});
 
       
-    
-
-
+  
 
 
 

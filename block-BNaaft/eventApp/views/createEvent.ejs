@@ -13,35 +13,48 @@
 </head>
 <body>
     <div class="container">
-
    
-    <form action="/events" method="POST"> 
-        <label for="titile">
+        <h1 class="heading">Create Events</h1>
+    <div class="center">
+     <form action="/events" method="POST"> 
+        <div>
+        <label for="titile">Title
             <input type="text" name="title">
         </label>
-        <label for="summary">
-            <textarea name="summary" id=""></textarea>
-        </label>
-        <label for="host">
+        <label for="host">Host Name
             <input type="text" name="host">
         </label>
-        <label for="start_date">
+    </div>
+    <div>
+        <label for="start_date">Start Date
             <input type="date" name="start_date">
         </label>
 
-        <label for="end_date">
+        <label for="end_date">End Date
             <input type="date" name="end_date">
         </label>
-        <label for="category">category</label>
-          <input type="text" id="" name="category" class="asd" />
-          <label for="">location</label>
-          <input type="text" id="" name="location" class="asd" />
+    </div>
+
+       <div>
+          <label for="category">Category
+            <input type="text" id="" name="category" class="asd" />
+          </label>
+          <label for="">Location
+              <input type="text" id="" name="location" class="asd" />
+          </label>
+        </div>
+        <div class="summary">
+            <label for="summary">Summary
+              <textarea name="summary" id=""></textarea>
+          </label>
+        </div>
           <input
             id="btn"
             type="submit"
             name="submit"
-            value="create event "
+            value="Click Me"
           />
+        </div>
     </form>
 </div>
 </body>
