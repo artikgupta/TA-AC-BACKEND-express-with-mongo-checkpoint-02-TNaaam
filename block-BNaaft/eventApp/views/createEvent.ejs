@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>Document</title>
+    <script
+    src="https://kit.fontawesome.com/c91808f2e8.js"
+    crossorigin="anonymous"
+  ></script>
+</head>
+<body>
+    <div class="container">
+   
+        <h1 class="heading">Create Events</h1>
+    <div class="center">
+     <form action="/events" method="POST"> 
+        <div>
+        <label for="titile">Title
+            <input type="text" name="title">
+        </label>
+        <label for="host">Host Name
+            <input type="text" name="host">
+        </label>
+    </div>
+    <div>
+        <label for="start_date">Start Date
+            <input type="date" name="start_date">
+        </label>
+
+        <label for="end_date">End Date
+            <input type="date" name="end_date">
+        </label>
+    </div>
+
+       <div>
+          <label for="category">Category
+            <input type="text" id="" name="category" class="asd" />
+          </label>
+          <label for="">Location
+              <input type="text" id="" name="location" class="asd" />
+          </label>
+        </div>
+        <div class="summary">
+            <label for="summary">Summary
+              <textarea name="summary" id=""></textarea>
+          </label>
+        </div>
+          <input
+            id="btn"
+            type="submit"
+            name="submit"
+            value="Click Me"
+          />
+        </div>
+    </form>
+</div>
+</body>
+</html>

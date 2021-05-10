@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script
+    src="https://kit.fontawesome.com/c91808f2e8.js"
+    crossorigin="anonymous"
+  ></script>
+</head>
+<body>
+  <header >
+    <a href="/events/create" class="nav">Go to home page</a>
+  </header>
+
+
+  <div id="search">
+    <form action="/events/search/city" method="POST">
+      <input type="text" placeholder="search location" name="search" />
+      <button>Search event by location</button>
+    </form>
+  </div>
+
+
+  <div class="wrapper">
+  
+    <%if(categories && categories.length) { %> <% categories.forEach(category => { %>
+      <div id="category">
+        <div>
+          <a href="/events/<%= category%>/single"> <%= category%> </a>
+        </div>
+      </div>
+      <% })%> <% } else {%>
+      <div></div>
+      <% }%>
+
+    <ul>
+       <% if(events.length){ %>
+       <% events.forEach((event)=>{ %>
+       <li class="flex-30 box">
+      <h5 class="event_title"><%= event.title%></h5>
+      <p class="summary">
+      <%= event.summary.substring(0,100).concat("....")%>
+      </p>
+      <p class="host">Hosted by: <span><%= event.host%></span></p>
+
+      <p class="date">
+        <span><%= moment(event.start_date).format("DD-MM-YYYY") %></span> to
+        <span><%= moment(event.end_date).format("DD-MM-YYYY")%></span>
+      </p>
+
+      <p><span class="category"><%= event.category%></span></p>
+      <p class="like">Likes <span><%= event.likes%></span></p>
+      <p class="location"> <i class="fas fa-map-marker-alt"></i> <%= event.location%></p>
+      <a href="/events/<%= event.id%>">
+        <button>See more</button>
+      </a>
+      <% })%> 
+      <% } else {%>
+        <h2 class="no-events">No events available</h2>
+      </li>
+      <% }%>
+    </ul>
+  </div>
+</body>
+</html>

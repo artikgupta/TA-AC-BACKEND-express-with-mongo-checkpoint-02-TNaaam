@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script
+    src="https://kit.fontawesome.com/c91808f2e8.js"
+    crossorigin="anonymous"
+  ></script>
+</head>
+<body>
+  <header >
+    <a href="/events" class="nav"> Go to Events Lists </a>
+  </header>
+  <div class="wrapper">
+      <div class="fullcontent" id="single">
+        <div class="headings">
+          <h2>Welcome to the events Lists</h2>
+        </div>
+  
+        <li class="root">
+          <h2><%= event.title%></h5>
+          <p class="summary"><%= event.summary%></p>
+          <p class="host">Host: <span><%= event.host%></span></p>
+          <p class="date">
+            Start date: <span><%=  event.start_date%></span>
+          </p>
+          <p class="date">
+            End date: <span><%= event.end_date%></span>
+          </p>
+  
+          <p><span><%= event.category%></span></p>
+          <p class="like">Likes <span><%= event.likes%></span></p>
+  
+          <div class="likes">
+            <a href="/events/<%= event.id%>/likes">
+              <button><i class="far fa-thumbs-up"></i></button>
+            </a>
+            <a href="/events/<%= event.id%>/dislike">
+              <button><i class="far fa-thumbs-down"></i></button>
+            </a>
+          </div>
+          <p class="loc"><%= event.location%></p>
+  
+          <div>
+            <a href="/events/<%= event.id%>/edit">
+              <button>edit</button>
+            </a>
+            <a href="/events/<%= event.id%>/delete">
+              <button>Delete</button>
+            </a>
+          </div>
+        </li>
+        <div class="formbox1">
+            <form id="form1" action="/events/<%= event.id%>/remarks" method="POST">
+              <label for="">title</label>
+              <input type="text" name="title" />
+              <label for="">author</label>
+              <input type="text" name="author"  />
+              <input
+                id="btn"
+                type="submit"
+                name="submit"
+                value="Add remark "
+                class="mainbox"
+              />
+            </form>
+          </div>
+        <ul class="root-remark">
+            <%if(event.remarks.length) { %> <% event.remarks.forEach(remark => { %>
+            <li id="remark">
+              <h5><%= remark.title%></h5>
+              <p class="host">Remark by: <span><%= remark.author%></span></p>
+              <p class="like">Likes <span><%=remark.likes%></span></p>
+              <div class="dislike">
+                
+                <a href="/remarks/<%= remark._id%>/likes">
+                  <i class="far fa-thumbs-up"></i>
+                </a>
+                <a href="/remarks/<%= remark._id%>/dislikes">
+                  <i class="far fa-thumbs-down"></i>
+                </a>
+              </div>
+              <div class="edit">
+                <a href="/remarks/<%= remark._id%>/edit">
+                  <button>edit</button>
+                </a>
+                <a href="/remarks/<%= remark._id%>/delete">
+                  <button>Delete</button>
+                </a>
+              </div>
+              <% })%> <% } else {%>
+              <h2 class="no-remark">No remarks is added yet</h2>
+            </li>
+            <% }%>
+          </ul>
+        </div>
+</body>
+</html>
