@@ -5,23 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
     <script
     src="https://kit.fontawesome.com/c91808f2e8.js"
     crossorigin="anonymous"
   ></script>
 </head>
 <body>
-    <div class="fullcontent" id="single">
-        <div id="event">
-          <a href="/events"> Go to Events Lists </a>
-        </div>
+  <header >
+    <a href="/events" class="nav"> Go to Events Lists </a>
+  </header>
+  <div class="wrapper">
+      <div class="fullcontent" id="single">
         <div class="headings">
-          <h1>Lists of events</h1>
-          <h2>Welcome to the events Lists.</h2>
+          <h2>Welcome to the events Lists</h2>
         </div>
   
         <li class="root">
-          <h5><%= event.title%></h5>
+          <h2><%= event.title%></h5>
           <p class="summary"><%= event.summary%></p>
           <p class="host">Host: <span><%= event.host%></span></p>
           <p class="date">
@@ -96,5 +97,6 @@
             </li>
             <% }%>
           </ul>
+        </div>
 </body>
 </html>
